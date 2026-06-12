@@ -120,7 +120,7 @@ A tabela abaixo resume as principais características do dataset utilizado na an
 | Sudeste | 1.247 | 4.378.327 | R$ 2.844.751.667 | R$ 649,73 |
 | Norte | 448 | 2.569.434 | R$ 1.761.847.174 | R$ 685,69 |
 
-![Mapa coroplético do Brasil por região](figures/fig1_mapa.png)
+![Mapa coroplético do Brasil por região](figures/figures/fig1_mapa.png)
 
 *Figura 1 — Mapa coroplético do Brasil destacando os estados cobertos pelo dataset, coloridos por região geográfica (Nordeste em azul escuro, Norte em azul claro, Sudeste em laranja). Fonte: Dashboard Power BI, Página 1.*
 
