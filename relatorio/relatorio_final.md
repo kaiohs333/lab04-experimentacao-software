@@ -124,7 +124,7 @@ A tabela abaixo resume as principais características do dataset utilizado na an
 
 *Figura 1 — Mapa coroplético do Brasil destacando os estados cobertos pelo dataset, coloridos por região geográfica (Nordeste em azul escuro, Norte em azul claro, Sudeste em laranja). Fonte: Dashboard Power BI, Página 1.*
 
-![Total de beneficiários por estado](figures/fig2_barras_estado_horizontal.png)
+![Total de beneficiários por estado](figures/figures/fig2_barras_estado_horizontal.png)
 
 *Figura 2 — Total de beneficiários por estado em dezembro de 2023. Bahia lidera com 2,4 milhões, seguida por Rio de Janeiro (1,7 Mi) e Pernambuco (1,6 Mi). Fonte: Dashboard Power BI, Página 1.*
 
@@ -179,11 +179,11 @@ Os vinte estados com beneficiários ativos em dezembro de 2023 são apresentados
 | AP | Amapá | Norte | 118.234 | R$ 81.678.257 | R$ 690,82 |
 | RR | Roraima | Norte | 73.097 | R$ 53.708.371 | R$ 734,75 |
 
-![Tabela de beneficiários, valor pago e valor médio por estado](figures/fig3_tabela_rq1.png)
+![Tabela de beneficiários, valor pago e valor médio por estado](figures/figures/fig3_tabela_rq1.png)
 
 *Figura 3 — Tabela detalhada com total de beneficiários, valor pago e valor médio por estado em dezembro de 2023. Total nacional: 16.341.242 beneficiários e R$ 10,7 bilhões pagos. Fonte: Dashboard Power BI, Página 2 (RQ1).*
 
-![Beneficiários por estado — barras verticais](figures/fig4_barras_estado_vertical.png)
+![Beneficiários por estado — barras verticais](figures/figures/fig4_barras_estado_vertical.png)
 
 *Figura 4 — Gráfico de barras verticais com total de beneficiários por estado, ordenado de forma decrescente. A disparidade entre Bahia (2,4 Mi) e Roraima (0,1 Mi) evidencia a concentração regional do programa. Fonte: Dashboard Power BI, Página 2 (RQ1).*
 
@@ -207,11 +207,11 @@ A tabela abaixo apresenta a evolução do programa nas 27 capitais estaduais, co
 | 2022 | Auxílio Brasil | 3.303.527 | R$ 1.481.149.474 | R$ 448,35 |
 | 2023 | Novo Bolsa Família | 3.981.615 | R$ 2.590.891.647 | R$ 650,71 |
 
-![Evolução anual de beneficiários e valor médio](figures/fig5_linha_anual_rq2.png)
+![Evolução anual de beneficiários e valor médio](figures/figures/fig5_linha_anual_rq2.png)
 
 *Figura 5 — Evolução anual (2019–2023) do total de beneficiários nas capitais (eixo esquerdo) e do valor médio por beneficiário em R$ (eixo direito). Os dois saltos expressivos — em 2022 e 2023 — são claramente visíveis. Fonte: Dashboard Power BI, Página 3 (RQ2).*
 
-![Evolução mensal de beneficiários em 2023](figures/fig6_barras_mensal_rq2.png)
+![Evolução mensal de beneficiários em 2023](figures/figures/fig6_barras_mensal_rq2.png)
 
 *Figura 6 — Evolução mensal do total de beneficiários nas capitais ao longo de 2023. O salto entre fevereiro e março marca a transição do Auxílio Brasil para o Novo Bolsa Família, com aumento de ~500 mil beneficiários. Fonte: Dashboard Power BI, Página 3 (RQ2).*
 
@@ -236,11 +236,11 @@ O número de beneficiários nas capitais também cresceu 99% entre 2019 e 2023 (
 | Nordeste | 9 | 1.726 | 9.393.481 | R$ 6.134.782.864 | R$ 653,09 |
 | Sudeste | 4 | 1.247 | 4.378.327 | R$ 2.844.751.667 | R$ 649,73 |
 
-![Valor médio por beneficiário por região](figures/fig7_pizza_rq3.png)
+![Valor médio por beneficiário por região](figures/figures/fig7_pizza_rq3.png)
 
 *Figura 7 — Gráfico de pizza com a proporção do valor médio por beneficiário entre as três regiões: Norte (R$ 686, 34,48%), Nordeste (R$ 653, 32,84%) e Sudeste (R$ 650, 32,67%). Fonte: Dashboard Power BI, Página 4 (RQ3).*
 
-![Proporção de valor médio pago por beneficiários por região](figures/fig8_combinado_rq3.png)
+![Proporção de valor médio pago por beneficiários por região](figures/figures/fig8_combinado_rq3.png)
 
 *Figura 8 — Gráfico combinado (barras + linha) relacionando o total de beneficiários por região (barras, eixo esquerdo) com o valor médio por beneficiário (linha, eixo direito). Evidencia que a região Norte tem menor volume de beneficiários, mas o maior valor médio. Fonte: Dashboard Power BI, Página 4 (RQ3).*
 
@@ -269,11 +269,11 @@ Os dez municípios com maior número de beneficiários em dezembro de 2023:
 | 9 | Duque de Caxias | RJ | Sudeste | 123.099 | R$ 80.033.713 | R$ 650,16 |
 | 10 | São Luís | MA | Nordeste | 121.532 | R$ 80.704.262 | R$ 664,06 |
 
-![Top 10 municípios por beneficiários](figures/fig9_top10_rq4.png)
+![Top 10 municípios por beneficiários](figures/figures/fig9_top10_rq4.png)
 
 *Figura 9 — Gráfico de barras horizontais com os 10 municípios de maior volume de beneficiários, coloridos por região (azul claro = Nordeste, azul escuro = Norte, laranja = Sudeste). Rio de Janeiro lidera com expressiva margem (575 mil). Fonte: Dashboard Power BI, Página 5 (RQ4).*
 
-![Volume de beneficiários x valor médio por município](figures/fig10_scatter_rq4.png)
+![Volume de beneficiários x valor médio por município](figures/figures/fig10_scatter_rq4.png)
 
 *Figura 10 — Scatter plot: volume de beneficiários (eixo X) versus valor médio por beneficiário (eixo Y), com tamanho das bolhas proporcional ao total pago e cores por região. Municípios do Norte (azul escuro) tendem a apresentar valor médio mais alto mesmo com volume menor. Fonte: Dashboard Power BI, Página 5 (RQ4).*
 
