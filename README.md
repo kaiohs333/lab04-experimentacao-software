@@ -34,7 +34,7 @@ Os dados abrangem **3.494 municípios** com beneficiários em dezembro de 2023, 
 
 ![Caracterização do Dataset](https://github.com/kaiohs333/lab04-experimentacao-software/blob/main/imagens/Cateriza%C3%A7%C3%A3o%20do%20dataset.png?raw=true)
 
-> Visão geral do dataset: distribuição geográfica dos beneficiários por estado e região, com indicadores de total de beneficiários (16 Mi), valor pago (107 Bi), estados cobertos (20) e municípios atendidos (3 Mil).
+> Visão geral do dataset: distribuição geográfica dos beneficiários por estado e região, com indicadores de total de beneficiários (16 Mi), valor pago (R$ 10,7 Bi), estados cobertos (20) e municípios atendidos (3 Mil).
 
 ---
 
@@ -150,7 +150,7 @@ Os CSVs prontos para importação no BI serão salvos em `data/processed/`.
 | Período do snapshot | Dezembro de 2023 |
 | Municípios com dados | 3.494 |
 | Total de beneficiários (Dez/2023) | 16.341.242 |
-| Total pago (2019–2023) | R$ 107.413.817.050,00 |
+| Total pago (Dez/2023) | R$ 10.741.381.705,00 |
 | Período histórico (capitais) | Dez/2019 a Dez/2023 + mensal 2023 |
 
 > **Nota:** Os programas passaram por três nomes no período analisado: *Bolsa Família* (até 2020), *Auxílio Brasil* (2021–fev/2023) e *Novo Bolsa Família* (mar/2023 em diante). Cada período utiliza o endpoint correto da API.
