@@ -13,7 +13,7 @@
 
 Este projeto realiza a coleta, processamento e visualização de dados públicos do **Programa Bolsa Família** disponibilizados pelo Portal da Transparência do Governo Federal. O objetivo é explorar a distribuição geográfica, a evolução temporal e as características dos beneficiários do programa, utilizando uma ferramenta de Business Intelligence para responder às questões de pesquisa propostas.
 
-Os dados abrangem **3.494 municípios** com beneficiários em dezembro de 2023, totalizando **16,3 milhões de beneficiários** e **R$ 107 bilhões** pagos no período analisado (2019–2023). Para a análise temporal, foram coletados dados das 27 capitais estaduais entre 2019 e 2023.
+Os dados abrangem **3.494 municípios** com beneficiários em dezembro de 2023, totalizando **16,3 milhões de beneficiários** e **R$ 10,7 bilhões** pagos no mês de referência. Para a análise temporal, foram coletados dados das 27 capitais estaduais entre 2019 e 2023.
 
 ---
 
