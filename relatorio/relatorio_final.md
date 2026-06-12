@@ -19,6 +19,7 @@
    - 3.3 [Definição das Métricas](#33-definição-das-métricas)
    - 3.4 [Fluxo de Execução](#34-fluxo-de-execução)
    - 3.5 [Caracterização do Dataset](#35-caracterização-do-dataset)
+   - 3.6 [Desafios e Tomadas de Decisão](#36-desafios-e-tomadas-de-decisão)
 4. [Resultados](#4-resultados)
    - 4.1 [RQ01 — Distribuição por Estado](#41-rq01--distribuição-por-estado)
    - 4.2 [RQ02 — Evolução Temporal](#42-rq02--evolução-temporal)
@@ -61,7 +62,7 @@ A análise baseia-se em um snapshot de **3.494 municípios** com beneficiários 
 | API IBGE Localidades | Obtenção de todos os códigos IBGE municipais |
 | pandas | Manipulação, agregação e exportação dos dados |
 | python-dotenv | Gerenciamento da chave de acesso à API |
-| Power BI | Construção do dashboard de visualização |
+| Microsoft Power BI | Construção do dashboard de visualização |
 
 ### 3.2 Fonte e Coleta dos Dados
 
@@ -119,19 +120,41 @@ A tabela abaixo resume as principais características do dataset utilizado na an
 | Sudeste | 1.247 | 4.378.327 | R$ 2.844.751.667 | R$ 649,73 |
 | Norte | 448 | 2.569.434 | R$ 1.761.847.174 | R$ 685,69 |
 
+![Mapa coroplético do Brasil por região](figures/fig1_mapa.png)
+
+*Figura 1 — Mapa coroplético do Brasil destacando os estados cobertos pelo dataset, coloridos por região geográfica (Nordeste em azul escuro, Norte em azul claro, Sudeste em laranja). Fonte: Dashboard Power BI, Página 1.*
+
+![Total de beneficiários por estado](figures/fig2_barras_estado_horizontal.png)
+
+*Figura 2 — Total de beneficiários por estado em dezembro de 2023. Bahia lidera com 2,4 milhões, seguida por Rio de Janeiro (1,7 Mi) e Pernambuco (1,6 Mi). Fonte: Dashboard Power BI, Página 1.*
+
 > **Nota sobre cobertura:** As regiões Sul e Centro-Oeste não aparecem no snapshot de Dez/2023 pois a maioria de seus municípios retornou dados vazios via API — o que reflete a menor incidência do programa nessas regiões mais desenvolvidas. Dados das capitais dessas regiões estão disponíveis na série histórica.
 
-*[Inserir visualização de caracterização do dataset — Sprint 1]*
+### 3.6 Desafios e Tomadas de Decisão
+
+#### 3.6.1 Cobertura Parcial das Regiões Sul e Centro-Oeste
+
+A API do Portal da Transparência retornou dados vazios para a maioria dos municípios das regiões Sul e Centro-Oeste no snapshot de dezembro de 2023. Esses municípios possuem menor incidência do programa, e a API simplesmente não retorna registros para períodos sem beneficiários ativos. **Decisão:** registrar como limitação do estudo e restringir a análise comparativa de regiões às três regiões com cobertura suficiente (Norte, Nordeste e Sudeste), utilizando dados das capitais para análise temporal.
+
+#### 3.6.2 Dados Agregados por Município
+
+A API não fornece distribuição de valores individuais por beneficiário — apenas os totais por município. Isso impossibilita análises de dispersão intra-municipal e exige o uso da média simples como medida de tendência central. **Decisão:** adotar a média (`total_valor / qtd_beneficiarios`) como proxy do benefício típico por família, documentando explicitamente a limitação.
+
+#### 3.6.3 Série Histórica Restrita a Capitais
+
+Para a análise temporal (RQ02), a coleta abrangente de todos os municípios em múltiplos períodos seria inviável pelo volume de requisições necessárias. **Decisão:** utilizar as 27 capitais estaduais como proxy representativo do comportamento nacional ao longo do tempo.
 
 ---
 
 ## 4. Resultados
 
+Para cada questão de pesquisa, os resultados são apresentados por meio de estatísticas descritivas, tabelas e visualizações do dashboard. A média simples é adotada como medida central para o valor por beneficiário, conforme justificado na Seção 3.3.
+
 ### 4.1 RQ01 — Distribuição por Estado
 
 **Pergunta:** Como se distribui o número de beneficiários do Bolsa Família entre os estados brasileiros?
 
-Os dez estados com maior número de beneficiários em dezembro de 2023 são apresentados abaixo:
+Os vinte estados com beneficiários ativos em dezembro de 2023 são apresentados abaixo:
 
 | UF | Estado | Região | Beneficiários | Total pago | Valor médio |
 |---|---|---|---:|---:|---:|
@@ -145,12 +168,28 @@ Os dez estados com maior número de beneficiários em dezembro de 2023 são apre
 | SP | São Paulo | Sudeste | 745.676 | R$ 489.588.271 | R$ 656,57 |
 | PB | Paraíba | Nordeste | 674.395 | R$ 436.526.978 | R$ 647,29 |
 | AM | Amazonas | Norte | 648.075 | R$ 459.446.491 | R$ 708,94 |
+| PI | Piauí | Nordeste | 600.292 | R$ 393.485.914 | R$ 655,49 |
+| AL | Alagoas | Nordeste | 533.221 | R$ 355.360.672 | R$ 666,44 |
+| RN | Rio Grande do Norte | Nordeste | 501.640 | R$ 319.435.266 | R$ 636,78 |
+| SE | Sergipe | Nordeste | 384.326 | R$ 246.348.076 | R$ 640,99 |
+| ES | Espírito Santo | Sudeste | 305.257 | R$ 200.681.477 | R$ 657,42 |
+| TO | Tocantins | Norte | 158.384 | R$ 107.158.264 | R$ 676,57 |
+| AC | Acre | Norte | 130.174 | R$ 91.867.451 | R$ 705,73 |
+| RO | Rondônia | Norte | 124.518 | R$ 84.201.236 | R$ 676,22 |
+| AP | Amapá | Norte | 118.234 | R$ 81.678.257 | R$ 690,82 |
+| RR | Roraima | Norte | 73.097 | R$ 53.708.371 | R$ 734,75 |
+
+![Tabela de beneficiários, valor pago e valor médio por estado](figures/fig3_tabela_rq1.png)
+
+*Figura 3 — Tabela detalhada com total de beneficiários, valor pago e valor médio por estado em dezembro de 2023. Total nacional: 16.341.242 beneficiários e R$ 10,7 bilhões pagos. Fonte: Dashboard Power BI, Página 2 (RQ1).*
+
+![Beneficiários por estado — barras verticais](figures/fig4_barras_estado_vertical.png)
+
+*Figura 4 — Gráfico de barras verticais com total de beneficiários por estado, ordenado de forma decrescente. A disparidade entre Bahia (2,4 Mi) e Roraima (0,1 Mi) evidencia a concentração regional do programa. Fonte: Dashboard Power BI, Página 2 (RQ1).*
 
 A hipótese de que os estados do Nordeste concentrariam o maior número de beneficiários é **confirmada**: os estados nordestinos dominam o ranking, com destaque para Bahia (2,4 milhões), Pernambuco (1,6 milhões) e Ceará (1,5 milhões). Roraima apresenta o maior valor médio por beneficiário (R$ 734,75), indicando que as famílias atendidas nesse estado possuem maior grau de vulnerabilidade socioeconômica.
 
-*[Inserir gráfico de barras: beneficiários por estado — Sprint 2]*
-
-*[Inserir mapa coroplético do Brasil — Sprint 2]*
+> **Nota:** A hipótese é confirmada. O Nordeste concentra 9 dos 20 estados com dados e responde por 57,5% dos beneficiários do dataset. O valor médio por beneficiário é mais alto nos estados do Norte (AM, AC, RR), refletindo maior vulnerabilidade das famílias atendidas nessa região.
 
 ---
 
@@ -168,6 +207,14 @@ A tabela abaixo apresenta a evolução do programa nas 27 capitais estaduais, co
 | 2022 | Auxílio Brasil | 3.303.527 | R$ 1.481.149.474 | R$ 448,35 |
 | 2023 | Novo Bolsa Família | 3.981.615 | R$ 2.590.891.647 | R$ 650,71 |
 
+![Evolução anual de beneficiários e valor médio](figures/fig5_linha_anual_rq2.png)
+
+*Figura 5 — Evolução anual (2019–2023) do total de beneficiários nas capitais (eixo esquerdo) e do valor médio por beneficiário em R$ (eixo direito). Os dois saltos expressivos — em 2022 e 2023 — são claramente visíveis. Fonte: Dashboard Power BI, Página 3 (RQ2).*
+
+![Evolução mensal de beneficiários em 2023](figures/fig6_barras_mensal_rq2.png)
+
+*Figura 6 — Evolução mensal do total de beneficiários nas capitais ao longo de 2023. O salto entre fevereiro e março marca a transição do Auxílio Brasil para o Novo Bolsa Família, com aumento de ~500 mil beneficiários. Fonte: Dashboard Power BI, Página 3 (RQ2).*
+
 A hipótese de crescimento progressivo do valor médio é **confirmada**. Dois saltos se destacam:
 
 - **2021→2022:** o valor médio quase dobrou (R$ 207 → R$ 448), reflexo da expansão do Auxílio Brasil com benefícios adicionais introduzidos no segundo semestre de 2022.
@@ -175,9 +222,7 @@ A hipótese de crescimento progressivo do valor médio é **confirmada**. Dois s
 
 O número de beneficiários nas capitais também cresceu 99% entre 2019 e 2023 (1,99 milhão → 3,98 milhões), indicando expansão significativa do programa.
 
-*[Inserir gráfico de linha: evolução anual do valor médio — Sprint 2]*
-
-*[Inserir gráfico de linha: evolução mensal em 2023 — Sprint 2]*
+> **Nota:** A hipótese é confirmada. O valor médio cresceu 285% entre 2019 e 2023 (R$ 169 → R$ 651). O gráfico mensal de 2023 evidencia a ruptura em março, quando o Novo Bolsa Família elevou o benefício mínimo para R$ 600.
 
 ---
 
@@ -185,15 +230,23 @@ O número de beneficiários nas capitais também cresceu 99% entre 2019 e 2023 (
 
 **Pergunta:** Qual é o valor médio recebido por beneficiário em cada região do Brasil?
 
-| Região | Municípios | Beneficiários | Total pago | Valor médio por beneficiário |
-|---|---:|---:|---:|---:|
-| Norte | 448 | 2.569.434 | R$ 1.761.847.174 | **R$ 685,69** |
-| Nordeste | 1.726 | 9.393.481 | R$ 6.134.782.864 | R$ 653,09 |
-| Sudeste | 1.247 | 4.378.327 | R$ 2.844.751.667 | R$ 649,73 |
+| Região | Estados | Municípios | Beneficiários | Total pago | Valor médio por beneficiário |
+|---|---:|---:|---:|---:|---:|
+| Norte | 7 | 448 | 2.569.434 | R$ 1.761.847.174 | **R$ 685,69** |
+| Nordeste | 9 | 1.726 | 9.393.481 | R$ 6.134.782.864 | R$ 653,09 |
+| Sudeste | 4 | 1.247 | 4.378.327 | R$ 2.844.751.667 | R$ 649,73 |
+
+![Valor médio por beneficiário por região](figures/fig7_pizza_rq3.png)
+
+*Figura 7 — Gráfico de pizza com a proporção do valor médio por beneficiário entre as três regiões: Norte (R$ 686, 34,48%), Nordeste (R$ 653, 32,84%) e Sudeste (R$ 650, 32,67%). Fonte: Dashboard Power BI, Página 4 (RQ3).*
+
+![Proporção de valor médio pago por beneficiários por região](figures/fig8_combinado_rq3.png)
+
+*Figura 8 — Gráfico combinado (barras + linha) relacionando o total de beneficiários por região (barras, eixo esquerdo) com o valor médio por beneficiário (linha, eixo direito). Evidencia que a região Norte tem menor volume de beneficiários, mas o maior valor médio. Fonte: Dashboard Power BI, Página 4 (RQ3).*
 
 A hipótese de que a região Norte apresentaria maior valor médio por beneficiário é **confirmada** (R$ 685,69 vs R$ 653,09 no Nordeste). Esse resultado pode refletir o perfil de maior vulnerabilidade das famílias atendidas na região amazônica, bem como o custo de vida mais elevado em municípios de difícil acesso. A diferença entre Nordeste e Sudeste é pequena (R$ 3,36), sugerindo uniformidade no critério de benefício.
 
-*[Inserir gráfico de barras: valor médio por região — Sprint 2]*
+> **Nota:** A hipótese é parcialmente confirmada. A região Norte lidera o valor médio (R$ 685,69), enquanto Nordeste e Sudeste apresentam valores muito próximos (R$ 653,09 e R$ 649,73). A diferença entre as três regiões é de apenas R$ 36, o que indica que o benefício base é relativamente uniforme nacionalmente.
 
 ---
 
@@ -216,9 +269,17 @@ Os dez municípios com maior número de beneficiários em dezembro de 2023:
 | 9 | Duque de Caxias | RJ | Sudeste | 123.099 | R$ 80.033.713 | R$ 650,16 |
 | 10 | São Luís | MA | Nordeste | 121.532 | R$ 80.704.262 | R$ 664,06 |
 
-A hipótese é **parcialmente confirmada**: grandes centros urbanos lideram o ranking em volume absoluto, com destaque para Rio de Janeiro (575 mil beneficiários). No entanto, a presença de Manaus (4º) e Belém (5º) evidencia o peso da região Norte no programa, mesmo em volume absoluto. Chama atenção que Nova Iguaçu e Duque de Caxias — municípios da Baixada Fluminense, não capitais — figuram no top 10, superando metrópoles como São Paulo (não listado entre os dez primeiros), o que aponta para alta concentração de vulnerabilidade social na região metropolitana do Rio de Janeiro.
+![Top 10 municípios por beneficiários](figures/fig9_top10_rq4.png)
 
-*[Inserir gráfico de barras horizontal: top 20 municípios — Sprint 2]*
+*Figura 9 — Gráfico de barras horizontais com os 10 municípios de maior volume de beneficiários, coloridos por região (azul claro = Nordeste, azul escuro = Norte, laranja = Sudeste). Rio de Janeiro lidera com expressiva margem (575 mil). Fonte: Dashboard Power BI, Página 5 (RQ4).*
+
+![Volume de beneficiários x valor médio por município](figures/fig10_scatter_rq4.png)
+
+*Figura 10 — Scatter plot: volume de beneficiários (eixo X) versus valor médio por beneficiário (eixo Y), com tamanho das bolhas proporcional ao total pago e cores por região. Municípios do Norte (azul escuro) tendem a apresentar valor médio mais alto mesmo com volume menor. Fonte: Dashboard Power BI, Página 5 (RQ4).*
+
+A hipótese é **parcialmente confirmada**: grandes centros urbanos lideram o ranking em volume absoluto, com destaque para Rio de Janeiro (575 mil beneficiários). No entanto, a presença de Manaus (4º) e Belém (5º) evidencia o peso da região Norte no programa, mesmo em volume absoluto. Chama atenção que Nova Iguaçu e Duque de Caxias — municípios da Baixada Fluminense, não capitais — figuram no top 10, superando metrópoles como São Paulo, o que aponta para alta concentração de vulnerabilidade social na região metropolitana do Rio de Janeiro.
+
+> **Nota:** A hipótese é parcialmente confirmada. Grandes centros urbanos dominam em volume absoluto, mas São Paulo — maior cidade do país — não figura no top 10. A presença de Nova Iguaçu e Duque de Caxias (Baixada Fluminense) é o achado mais surpreendente do estudo e merece investigação adicional.
 
 ---
 
@@ -262,6 +323,8 @@ Os dados do Programa Bolsa Família revelam um cenário de **acentuada concentra
 | RQ04 | Grandes centros urbanos lideram em volume absoluto | Rio de Janeiro, Fortaleza e Salvador lideram; Baixada Fluminense destoa | **Parcialmente** |
 
 Os achados reforçam a relevância do programa como principal mecanismo de redistribuição de renda no Brasil e evidenciam a persistente desigualdade regional. A expansão observada entre 2019 e 2023 — tanto em número de beneficiários quanto em valor do benefício — indica uma mudança de escopo do programa, que passou de uma política de complementação de renda para uma política mais ampla de garantia de renda mínima.
+
+Como **próximos passos**, seria relevante ampliar a cobertura para as regiões Sul e Centro-Oeste mediante uma nova coleta com tratamento diferenciado para municípios com baixa incidência, bem como explorar correlações entre o valor médio do benefício e indicadores socioeconômicos municipais (IDH, índice de Gini) para aprofundar a compreensão dos fatores que determinam o perfil dos beneficiários.
 
 ---
 
